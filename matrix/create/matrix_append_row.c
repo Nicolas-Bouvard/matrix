@@ -7,7 +7,7 @@
 
 #include "matric_system.h"
 
-matrix_t *matrix_insert_row(matrix_t *matrix, size_t index, double value)
+matrix_t *matrix_insert_row_at(matrix_t *matrix, size_t index, double value)
 {
     matrix_t *res = NULL;
     size_t i = 0;
