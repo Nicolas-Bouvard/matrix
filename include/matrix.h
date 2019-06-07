@@ -24,6 +24,12 @@ matrix_t *matrix_create(size_t row, size_t col);
 //copy a matrix
 matrix_t *matrix_copy(matrix_t *matrix);
 
+//insert a row to a matrix
+matrix_t *matrix_insert_row(matrix_t *matrix, size_t index, double value);
+
+//create the iddentity matrix
+matrix_t *matrix_iddentity(size_t size);
+
 //transpose matrix
 matrix_t *matrix_transpose(matrix_t *matrix);
 
@@ -39,6 +45,9 @@ void matrix_display(matrix_t *matrix);
 
 //multiplication between 2 matrices
 matrix_t *matrix_mult(matrix_t *matrix1, matrix_t *matrix2);
+
+//
+matrix_t *matrix_scalar_pow(matrix_t *matrix, double pow);
 
 //multiplication between a matrix and a number
 void matrix_scalar_mult(matrix_t *matrix, double nb);

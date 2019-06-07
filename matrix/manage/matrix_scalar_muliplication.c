@@ -7,16 +7,42 @@
 
 #include "matric_system.h"
 
-void matrix_scalar_mult(matrix_t *matrix, double nb)
+matrix_t *matrix_scalar_mult(matrix_t *matrix, double nb)
 {
+    matrix_t *res = NULL;
+
     if (!matrix)
-        return;
-    for (size_t i = 0; i < matrix->row; i++)
-        for (size_t j = 0; j < matrix->col; j++)
-            matrix->matrix[i][j] *= nb;
+        return (NULL);
+    res = matrix_copy(matrix);
+    for (size_t i = 0; i < res->row; i++)
+        for (size_t j = 0; j < res->col; j++)
+            res->matrix[i][j] *= nb;
+    return (res);
 }
 
-void matrix_scalar_div(matrix_t *matrix, double nb)
+double matrix_system_pow(double nb, double pow)
 {
-    matrix_scalar_mult(matrix, 1 / nb);
+    double res = nb;
+
+    for (size_t i = 1; i < pow; i++)
+        res *= nb;
+    return (res);
+}
+
+matrix_t *matrix_scalar_pow(matrix_t *matrix, double pow)
+{
+    matrix_t *res = NULL;
+
+    if (!matrix)
+        return (NULL);
+    res = matrix_copy(matrix);
+    for (size_t i = 0; i < res->row; i++)
+        for (size_t j = 0; j < res->col; j++)
+            res->matrix[i][j] = matrix_system_pow(res->matrix[i][j], pow);
+    return (res);
+}
+
+matrix_t *matrix_scalar_div(matrix_t *matrix, double nb)
+{
+    return (matrix_scalar_mult(matrix, 1 / nb));
 }

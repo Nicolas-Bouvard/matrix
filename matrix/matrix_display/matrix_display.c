@@ -9,11 +9,11 @@
 
 void matrix_display(matrix_t *matrix)
 {
-    if (!matrix)
+    if (!matrix || !matrix->matrix)
         return;
     for (size_t i = 0; i < matrix->row; i++) {
         for (size_t j = 0; j < matrix->col; j++)
-            printf("%f\t", matrix->matrix[i][j]);
+            printf("%.1f\t", matrix->matrix[i][j]);
         printf("\n");
     }
 }

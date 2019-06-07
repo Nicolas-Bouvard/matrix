@@ -7,7 +7,7 @@
 
 #include "matric_system.h"
 
-void *my_memset(void *dst, int c, int n)
+void *matrix_memset(void *dst, int c, int n)
 {
     char *dest = (char *)dst;
 
@@ -18,13 +18,13 @@ void *my_memset(void *dst, int c, int n)
     return (dst);
 }
 
-void *my_calloc(int nb_elem, int type_size)
+void *matrix_calloc(size_t nb_elem, size_t type_size)
 {
     void *ptr = malloc(nb_elem * type_size);
 
     if (!ptr)
         return (NULL);
-    my_memset(ptr, 0, type_size);
+    matrix_memset(ptr, 0, type_size * nb_elem);
     return (ptr);
 }
 
@@ -39,6 +39,6 @@ matrix_t *matrix_create(size_t row, size_t col)
     matrix->matrix = malloc(sizeof(double *) * (row + 1));
     matrix->matrix[row] = NULL;
     for (size_t i = 0; i < row; i++)
-        matrix->matrix[i] = my_calloc(col + 1, sizeof(double));
+        matrix->matrix[i] = matrix_calloc(col + 1, sizeof(double));
     return (matrix);
 }
