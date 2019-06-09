@@ -32,6 +32,15 @@ matrix_t *matrix_create_rand_init(size_t row, size_t col, double init_epsilon);
 //copy a matrix
 matrix_t *matrix_copy(matrix_t *matrix);
 
+//concat two matrix adding new cols
+matrix_t *matrix_concat_cols(matrix_t *left, matrix_t *right);
+
+//concat two matrix adding new rows
+matrix_t *matrix_concat_rows(matrix_t *high, matrix_t *bottom);
+
+//init a row of a matrix with the value sent
+matrix_t *matrix_init_row(matrix_t *matrix, size_t index, double value);
+
 //get cols from a matrix
 matrix_t *matrix_get_cols(matrix_t *matrix, size_t start, size_t end);
 

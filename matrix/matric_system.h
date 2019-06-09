@@ -25,8 +25,14 @@ matrix_t *matrix_insert_row_at(matrix_t *matrix, size_t index, double value);
 
 matrix_t *matrix_copy(matrix_t *matrix);
 
+matrix_t *matrix_concat_cols(matrix_t *left, matrix_t *right);
+
+matrix_t *matrix_concat_rows(matrix_t *high, matrix_t *bottom);
+
 void matrix_rand_init(matrix_t *matrix, double init_epsilon);
 matrix_t *matrix_create_rand_init(size_t row, size_t col, double init_epsilon);
+
+matrix_t *matrix_init_row(matrix_t *matrix, size_t index, double value);
 
 linked_list_t *matrix_get_trash(void);
 
