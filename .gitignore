@@ -56,3 +56,4 @@ dkms.conf
 Makefile
 libraries/*
 main.c
+.vscode/settings.json

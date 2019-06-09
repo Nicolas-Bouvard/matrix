@@ -29,7 +29,6 @@ double matrix_get_one_mult(matrix_t *m1, matrix_t *m2, size_t i, size_t j)
     return (res);
 }
 
-
 matrix_t *matrix_mult(matrix_t *matrix1, matrix_t *matrix2)
 {
     matrix_t *res = NULL;

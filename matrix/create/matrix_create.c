@@ -40,5 +40,6 @@ matrix_t *matrix_create(size_t row, size_t col)
     matrix->matrix[row] = NULL;
     for (size_t i = 0; i < row; i++)
         matrix->matrix[i] = matrix_calloc(col + 1, sizeof(double));
+    matrix_set_temporary(matrix, true);
     return (matrix);
 }

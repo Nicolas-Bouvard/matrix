@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include "linked_list.h"
 
 typedef struct matrix_s
 {
@@ -27,7 +28,16 @@ matrix_t *matrix_copy(matrix_t *matrix);
 void matrix_rand_init(matrix_t *matrix, double init_epsilon);
 matrix_t *matrix_create_rand_init(size_t row, size_t col, double init_epsilon);
 
+linked_list_t *matrix_get_trash(void);
+
+void matrix_destroy_trash(void);
+void matrix_free(matrix_t *matrix);
+
+void matrix_set_temporary(matrix_t *matrix, bool is_temporary);
+
 matrix_t *matrix_insert_col_at(matrix_t *matrix, size_t index, double value);
+
+matrix_t *matrix_rm_col(matrix_t *matrix, size_t index);
 
 void *matrix_memset(void *dst, int c, int n);
 void *matrix_calloc(size_t nb_elem, size_t type_size);
@@ -55,6 +65,10 @@ matrix_t *matrix_scalar_div(matrix_t *matrix, double nb);
 matrix_t *matrix_transpose(matrix_t *matrix);
 
 matrix_t *matrix_rm_row(matrix_t *matrix, size_t index);
+
+matrix_t *matrix_get_cols(matrix_t *matrix, size_t start, size_t end);
+
+matrix_t *matrix_get_row(matrix_t *matrix, size_t start, size_t end);
 
 void matrix_display(matrix_t *matrix);
 

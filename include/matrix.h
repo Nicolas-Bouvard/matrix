@@ -19,13 +19,24 @@ typedef struct matrix_s
 }matrix_t;
 
 //create a matrix of size col and row
+//Default: Set matrix as temporary
 matrix_t *matrix_create(size_t row, size_t col);
+
+//set matrix as temporary
+//then call function matrix_flush to free all this temporary matrix.
+void matrix_set_temporary(matrix_t *matrix, bool is_temporary);
 
 //create a matrix with random values
 matrix_t *matrix_create_rand_init(size_t row, size_t col, double init_epsilon);
 
 //copy a matrix
 matrix_t *matrix_copy(matrix_t *matrix);
+
+//get cols from a matrix
+matrix_t *matrix_get_cols(matrix_t *matrix, size_t start, size_t end);
+
+//get rows from a matrix
+matrix_t *matrix_get_rows(matrix_t *matrix, size_t start, size_t end);
 
 //insert a row to a matrix
 matrix_t *matrix_insert_row_at(matrix_t *matrix, size_t index, double value);
@@ -41,6 +52,9 @@ matrix_t *matrix_transpose(matrix_t *matrix);
 
 //destroy and free the matrix
 void matrix_destroy(matrix_t *matrix);
+
+//Function that you have to call at the end of the program, it destroy the trash so you can't flush after that
+void matrix_destroy_trash(void);
 
 //Remove a row from the matrix
 matrix_t *matrix_rm_row(matrix_t *matrix, size_t index);
