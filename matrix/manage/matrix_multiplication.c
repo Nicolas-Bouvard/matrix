@@ -7,18 +7,6 @@
 
 #include "matric_system.h"
 
-/*double matrix_get_one_mult(double *m1, double *m2, size_t row)
-{
-    double res = 0;
-
-    for (size_t i = 0; i < row; i++) {
-        printf("%f ", m1[i]);
-        res += m1[i] * m2[i];
-    }
-    printf("\n");
-    return (res);
-}*/
-
 double matrix_get_one_mult(matrix_t *m1, matrix_t *m2, size_t i, size_t j)
 {
     double res = 0;

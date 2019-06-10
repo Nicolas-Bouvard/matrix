@@ -22,5 +22,5 @@ matrix_t *matrix_create_rand_init(size_t row, size_t col, double init_epsilon)
     matrix_t *res = matrix_create(row, col);
 
     matrix_rand_init(res, init_epsilon);
-    return (res);    
+    return (res);
 }
