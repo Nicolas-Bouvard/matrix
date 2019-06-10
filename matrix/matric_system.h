@@ -32,9 +32,15 @@ matrix_t *matrix_concat_rows(matrix_t *high, matrix_t *bottom);
 void matrix_rand_init(matrix_t *matrix, double init_epsilon);
 matrix_t *matrix_create_rand_init(size_t row, size_t col, double init_epsilon);
 
+matrix_t *matrix_init_value(matrix_t *matrix, double value);
+
 matrix_t *matrix_init_row(matrix_t *matrix, size_t index, double value);
 
 linked_list_t *matrix_get_trash(void);
+
+void matrix_flush(void);
+
+matrix_t *matrix_flatten(matrix_t *matrix);
 
 void matrix_destroy_trash(void);
 void matrix_free(matrix_t *matrix);

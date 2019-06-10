@@ -38,6 +38,9 @@ matrix_t *matrix_concat_cols(matrix_t *left, matrix_t *right);
 //concat two matrix adding new rows
 matrix_t *matrix_concat_rows(matrix_t *high, matrix_t *bottom);
 
+//initialize all the elements of the matrix with the value
+matrix_t *matrix_init_value(matrix_t *matrix, double value);
+
 //init a row of a matrix with the value sent
 matrix_t *matrix_init_row(matrix_t *matrix, size_t index, double value);
 
@@ -58,6 +61,12 @@ matrix_t *matrix_iddentity(size_t size);
 
 //transpose matrix
 matrix_t *matrix_transpose(matrix_t *matrix);
+
+//create a matrix which is flat (X rows and 1 col)
+matrix_t *matrix_flatten(matrix_t *matrix);
+
+//free all the temporary matrix
+void matrix_flush(void);
 
 //destroy and free the matrix
 void matrix_destroy(matrix_t *matrix);
