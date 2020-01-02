@@ -13,6 +13,7 @@ matrix_t *matrix_get_rows(matrix_t *matrix, size_t start, size_t end)
 
     if (!matrix || start > end || end >= matrix->row)
         return (NULL);
+    fflush(stdout);
     res = matrix_create(end - start + 1, matrix->col);
     for (size_t i = 0; i < res->row; i++)
         for (size_t j = 0; j < res->col; j++)

@@ -50,11 +50,17 @@ matrix_t *matrix_get_cols(matrix_t *matrix, size_t start, size_t end);
 //get rows from a matrix
 matrix_t *matrix_get_rows(matrix_t *matrix, size_t start, size_t end);
 
+//apply the log function to all the elements of the matrix
+matrix_t *matrix_scalar_log(matrix_t *matrix);
+
 //insert a row to a matrix
 matrix_t *matrix_insert_row_at(matrix_t *matrix, size_t index, double value);
 
 //insert a col to a matrix
 matrix_t *matrix_insert_col_at(matrix_t *matrix, size_t index, double value);
+
+//Make the sigmoid of a matrix
+matrix_t *matrix_sigmoid(matrix_t *matrix);
 
 //create the iddentity matrix
 matrix_t *matrix_iddentity(size_t size);
@@ -80,38 +86,29 @@ matrix_t *matrix_rm_row(matrix_t *matrix, size_t index);
 //Remove a col from the matrix
 matrix_t *matrix_rm_col(matrix_t *matrix, size_t index);
 
+//scalar substraction with value - matrix
+matrix_t *matrix_scalar_sub_value(double value, matrix_t *matrix);
+
+//make the sum of a vector
+double matrix_sum_vect(matrix_t *matrix);
+
 //addition between 2 matrix
 matrix_t *matrix_add(matrix_t *matrix1, matrix_t *matrix2, bool free_matrix_1,
 bool free_matrix_2);
 
+//matrix multiplication elements by elements
+matrix_t *matrix_mult_elem(matrix_t *m1, matrix_t *m2);
+
+//substraction between 2 matrix
+matrix_t *matrix_sub(matrix_t *m1, matrix_t *m2);
+
 //display the matrix
 void matrix_display(matrix_t *matrix);
 
-//
-matrix_t *matrix_sigmoid(matrix_t *matrix);
-
-//
-double matrix_sum_vect(matrix_t *matrix);
-
-//
-matrix_t *matrix_mult_elem(matrix_t *m1, matrix_t *m2);
-
-//scalar substraction between matrix and value
-matrix_t *matrix_scalar_sub_value(double value, matrix_t *matrix);
-
-//scalar substraction between 2 matrix
-matrix_t *matrix_scalar_sub(matrix_t *m1, matrix_t *m2);
-
-//
-matrix_t *matrix_scalar_div(matrix_t *m1, matrix_t *m2);
-
-//
-matrix_t *matrix_scalar_div_value(matrix_t *matrix, double value);
-
-//multiplication between 2 matrix
+//multiplication between 2 matrices
 matrix_t *matrix_mult(matrix_t *matrix1, matrix_t *matrix2);
 
-//
+//apply the pow to all the elements of the matrix
 matrix_t *matrix_scalar_pow(matrix_t *matrix, double pow);
 
 //multiplication between a matrix and a number

@@ -72,7 +72,7 @@ matrix_t *matrix_mult(matrix_t *matrix1, matrix_t *matrix2);
 matrix_t *matrix_scalar_mult(matrix_t *matrix, double nb);
 double matrix_system_pow(double nb, double pow);
 matrix_t *matrix_scalar_pow(matrix_t *matrix, double pow);
-matrix_t *matrix_scalar_div(matrix_t *matrix, double nb);
+matrix_t *matrix_scalar_div(matrix_t *m1, matrix_t *m2);
 
 matrix_t *matrix_transpose(matrix_t *matrix);
 

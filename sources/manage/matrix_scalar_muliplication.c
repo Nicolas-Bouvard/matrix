@@ -41,8 +41,3 @@ matrix_t *matrix_scalar_pow(matrix_t *matrix, double pow)
             res->matrix[i][j] = matrix_system_pow(res->matrix[i][j], pow);
     return (res);
 }
-
-matrix_t *matrix_scalar_div(matrix_t *matrix, double nb)
-{
-    return (matrix_scalar_mult(matrix, 1 / nb));
-}
