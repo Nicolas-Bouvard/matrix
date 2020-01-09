@@ -9,8 +9,8 @@
 
 void matrix_flush(void)
 {
-    linked_list_t *trash = matrix_get_trash();
+    trash_list_t *trash = matrix_get_trash();
 
     while (trash->first)
-        ll_pop_at(trash, 0, true);
+        tl_pop_at(trash, 0, true);
 }

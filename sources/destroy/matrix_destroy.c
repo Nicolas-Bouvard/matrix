@@ -17,11 +17,11 @@ void matrix_free(matrix_t *matrix)
 
 void matrix_destroy(matrix_t *matrix)
 {
-    linked_list_t *trash = NULL;
+    trash_list_t *trash = NULL;
 
     if (!matrix || !matrix->matrix)
         return;
     trash = matrix_get_trash();
-    ll_pop_element(trash, matrix, false);
+    tl_pop_element(trash, matrix, false);
     matrix_free(matrix);
 }

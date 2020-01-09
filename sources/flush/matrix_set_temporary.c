@@ -9,13 +9,13 @@
 
 void matrix_set_temporary(matrix_t *matrix, bool is_temporary)
 {
-    linked_list_t *trash = NULL;
+    trash_list_t *trash = NULL;
 
     if (!matrix)
         return;
     trash = matrix_get_trash();
     if (is_temporary)
-        ll_append(trash, matrix);
+        tl_append(trash, matrix);
     else
-        ll_pop_element(trash, matrix, false);
+        tl_pop_element(trash, matrix, false);
 }

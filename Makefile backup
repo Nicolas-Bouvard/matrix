@@ -1,0 +1,114 @@
+##
+## EPITECH PROJECT, 2018
+## MUL_my_defender_2018
+## File description:
+## Makefile
+##
+
+NAME		=	matrix_build
+
+BUILD_DIR	=	./builds
+
+SRC_DIR		=	./sources
+
+SRC			=	main.c
+
+OBJ			=	$(SRC:%.c=$(BUILD_DIR)/%.o)
+
+CC			=	gcc -g3
+
+INCLUDE		=	-Iinclude
+
+LIB			=	-L. -lmatrix -L./libraries -llinked_list
+
+W			=	-W -Wall -Wextra
+
+CFLAGS 		= 	$(INCLUDE) $(LIB)
+
+GREEN		=	\e[1;32m
+
+WHITE		=	\e[0m
+
+ORANGE		=	\e[38;5;208m
+
+RED			=	\e[38;5;196m
+
+BLUE		=	\e[1;34m
+
+PINK		=	\e[38;5;198m
+
+CYAN		=	\e[38;49;96m
+
+D			=	0
+
+#	PERCENTAGE
+
+THIS		=	$(firstword $(MAKEFILE_LIST))
+
+ifndef ECHO
+T			:=	$(shell $(MAKE) $(MAKECMDGOALS) --no-print-directory \
+      			-nrRf $(THIS) \
+      			ECHO="COUNTTHIS" | grep -c "COUNTTHIS")
+N			:=	x
+C			=	$(words $N)$(eval N := x $N)
+ECHO		=	echo -ne "$(RED)\r[`expr $C '*' 100 / $T`%]"
+endif
+
+#	END	PERCENTAGE
+
+ifndef TIME_REF
+TIME_REF	=	$(date +%s)
+endif
+
+all:	make_lib	\
+	$(NAME)			\
+	time
+
+make_lib:
+	@$(MAKE) --no-print-directory -C ./libraries/linked_list
+	@$(MAKE) --no-print-directory -C ./matrix/
+
+time:
+	@#$$(($$(date +%s) - $(TIME_REF)))
+	@echo "\n$(GREEN)SUCCESS$(BLUE), Build took $(PINK)- $(BLUE)seconds to compile $(PINK)$T $(BLUE)files$(WHITE)"
+
+$(NAME):	$(TIME_REF)	$(OBJ)
+	@echo "$(BLUE)LINKING [ $(GREEN)$(subst $(BUILD_DIR)/,,$(OBJ)) $(LDFLAGS)$(BLUE)] -> [ $(RED)$(notdir $@)$(BLUE) ]\n$(WHITE)"
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+
+$(BUILD_DIR)/%.o:	%.c	include
+	@mkdir -p $(dir $@)
+	@$(ECHO) "$(BLUE)Compiling [$(GREEN)$(notdir $<) $(CYAN)-> $(ORANGE)$@$(BLUE)]$(WHITE)"
+	@$(CC) -o $@ -c $< $(CFLAGS)
+
+clear:
+	@clear
+
+clean:
+	@find . -name "*.o" -delete
+	@rm -rf $(BUILD_DIR)
+	@find . -name "*~" -delete
+	@find . -name "#*#" -delete
+	@find . -name "vgcore.*" -delete
+	@echo "$(BLUE)Removing \"$(ORANGE)*.o$(BLUE)\", \"$(ORANGE)*~$(BLUE)\", \"$(ORANGE)#*#$(BLUE)\", \"$(ORANGE)vgcore.*$(BLUE)\"$(WHITE)"
+	@echo "$(BLUE)Removing \"$(ORANGE)$(BUILD_DIR)$(BLUE)\" folder"
+	@$(MAKE) --no-print-directory -C ./matrix/ clean
+
+fclean:	clean
+	@rm -f $(NAME)
+	@$(MAKE) --no-print-directory -C ./matrix/ fclean
+	@echo "$(BLUE)Removing binary \"$(ORANGE)$(NAME)$(BLUE)\"$(WHITE)"
+
+re:
+	@$(MAKE) --no-print-directory -s $(THIS) fclean
+	@$(MAKE) --no-print-directory -s $(THIS) all
+	@$(MAKE) --no-print-directory -C ./matrix/ re
+
+play:	re
+		@./$(NAME)
+
+debug:	re
+		@valgrind --log-file=debug ./$(NAME)
+		@more debug
+
+.PHONY:	all	time	clear	clean	fclean	re	play	debug

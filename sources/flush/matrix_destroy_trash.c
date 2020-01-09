@@ -9,7 +9,7 @@
 
 void matrix_destroy_trash(void)
 {
-    linked_list_t *trash = matrix_get_trash();
+    trash_list_t *trash = matrix_get_trash();
 
-    ll_destroy(trash, true);
+    tl_destroy(trash, true);
 }

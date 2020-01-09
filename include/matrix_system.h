@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
-#include "linked_list.h"
 
 typedef struct matrix_s
 {
@@ -20,6 +19,39 @@ typedef struct matrix_s
     size_t row;
     double **matrix;
 }matrix_t;
+
+typedef struct trash_list_s
+{
+    struct tl_element_s *first;
+    size_t size;
+    void (*destructor)(void *);
+}trash_list_t;
+
+typedef struct tl_element_s
+{
+    matrix_t *elem;
+    struct tl_element_s *next;
+    struct tl_element_s *prev;
+}tl_element_t;
+
+/// Trash List
+
+trash_list_t *tl_create(void (*destructor)(void *));
+
+void tl_pop_at(trash_list_t *trash_list, size_t index, bool free_elem);
+size_t tl_pop_element(trash_list_t *list, void *element, bool free_elem);
+void tl_pop(trash_list_t *list, bool free_elem);
+
+void tl_free_elem(trash_list_t *list, tl_element_t *elem, bool free_elem);
+void tl_destroy(trash_list_t *list, bool free_elem);
+
+tl_element_t *tl_new(void *element);
+void tl_append(trash_list_t *list, void *element);
+
+void tl_insert(trash_list_t *list, void *element);
+void tl_insert_at(trash_list_t *list, void *element, size_t index);
+
+/// Matrix
 
 matrix_t *matrix_insert_row_at(matrix_t *matrix, size_t index, double value);
 
@@ -36,7 +68,7 @@ matrix_t *matrix_init_value(matrix_t *matrix, double value);
 
 matrix_t *matrix_init_row(matrix_t *matrix, size_t index, double value);
 
-linked_list_t *matrix_get_trash(void);
+trash_list_t *matrix_get_trash(void);
 
 void matrix_flush(void);
 
